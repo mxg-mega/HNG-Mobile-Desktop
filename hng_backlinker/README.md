@@ -1,6 +1,4 @@
-Here is the README file in Git Markdown format:
 
-```md
 # HNG Mobile-Desktop
 
 ## 📌 Overview
@@ -70,6 +68,3 @@ This project is licensed under the **MIT License**.
 
 ### 🎯 **Contributions**
 Feel free to **fork** the repo, submit **issues**, or suggest improvements!
-```
-
-This is the exact same README but formatted properly for GitHub Markdown. Let me know if you need any modifications! 🚀
