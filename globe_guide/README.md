@@ -45,7 +45,7 @@ Before running the app, ensure you have the following installed:
     flutter pub get
     ```
 
-###API Key Setup
+### API Key Setup
 1. Visit (RESTful Countries API)[https://restfulcountries.com] to generate your API key.
 
 2. Create a .env file in the project root.
@@ -56,7 +56,7 @@ Before running the app, ensure you have the following installed:
 API_KEY=your_api_key_here
 ```
 
-###Running the App
+### Running the App
 1. Ensure you have a device connected or an emulator running.
 
 2. Run the app:
@@ -66,7 +66,7 @@ API_KEY=your_api_key_here
     flutter run
     ```
 
-##Project Structure
+## Project Structure
 
 ```
 lib/
@@ -79,7 +79,7 @@ lib/
 └── main.dart        # App entry point
 ```
 
-##Dependencies
+## Dependencies
 The app uses the following key dependencies:
 
  - provider: For state management.
@@ -88,7 +88,7 @@ The app uses the following key dependencies:
 
  - lucide_icons_flutter: For icons.
 
-##Theme Customization
+## Theme Customization
 The app supports both light and dark themes:
 
 Light Theme: Clean, bright interface for daytime use.
@@ -97,7 +97,7 @@ Dark Theme: Eye-friendly dark mode for low-light environments.
 
 Themes can be toggled via the sun/moon icon in the app bar.
 
-##Testing
+## Testing
 To run the tests, use the following command:
 
 ```bash
@@ -120,7 +120,7 @@ Copy
 flutter build ios
 ```
 
-#Deployment
+# Deployment
 The app is deployed on (Appetize.io)[https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue] for easy testing. You can access it here:
 GlobeGuide on (Appetize.io)[https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue]
 
@@ -152,10 +152,10 @@ git push origin feature/AmazingFeature
 
 5. Open a Pull Request.
 
-##License
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
-##Acknowledgments
+## Acknowledgments
 Country data provided by RESTful Countries API.
 
 UI design inspired by Figma Template provided by HNG19.
