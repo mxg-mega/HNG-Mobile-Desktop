@@ -5,8 +5,8 @@ class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
-  
-  static const String githubUrl = 'https://github.com/mxg-mega/HNG-Mobile-Desktop';
+
+  static const String githubUrl = 'https://github.com/mxg-mega/HNG-Mobile-Desktop/tree/main/hng_backlinker';
   static const String hngHireUrl = 'https://hng12.slack.com/archives/C088PK3KE2K/p1738110526317749';
 
   static const String githubIcon = "assets/images/github.png";
