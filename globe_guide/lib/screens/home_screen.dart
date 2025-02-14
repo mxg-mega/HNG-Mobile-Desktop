@@ -168,13 +168,14 @@ class MyActionProcessingButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
