@@ -46,7 +46,7 @@ Before running the app, ensure you have the following installed:
     ```
 
 ### API Key Setup
-1. Visit (RESTful Countries API)[https://restfulcountries.com] to generate your API key.
+1. Visit [RESTful Countries API](https://restfulcountries.com) to generate your API key.
 
 2. Create a .env file in the project root.
 
@@ -70,12 +70,10 @@ API_KEY=your_api_key_here
 
 ```
 lib/
-├── models/          # Data models
 ├── providers/       # State management
 ├── screens/         # App screens
 ├── widgets/         # Reusable widgets
 ├── themes/          # Theme configurations
-├── utils/           # Utility functions
 └── main.dart        # App entry point
 ```
 
@@ -121,8 +119,8 @@ flutter build ios
 ```
 
 # Deployment
-The app is deployed on (Appetize.io)[https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue] for easy testing. You can access it here:
-GlobeGuide on (Appetize.io)[https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue]
+The app is deployed on [Appetize.io](https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue) for easy testing. You can access it here:
+GlobeGuide on [Appetize.io](https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue)
 
 Contributing
 We welcome contributions! Here’s how you can help:
