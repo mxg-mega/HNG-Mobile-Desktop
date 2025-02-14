@@ -151,7 +151,7 @@ git push origin feature/AmazingFeature
 5. Open a Pull Request.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the [MIT License](https://github.com/mxg-mega/HNG-Mobile-Desktop/tree/main/globe_guide). See the LICENSE file for details.
 
 ## Acknowledgments
 Country data provided by RESTful Countries API.
