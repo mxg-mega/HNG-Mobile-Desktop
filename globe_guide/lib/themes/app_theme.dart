@@ -39,12 +39,12 @@ class AppTheme {
       bodyLarge: TextStyle(
         fontFamily: 'Axiforma',
         fontSize: 16,
-        color: Colors.black,
+        // color: Colors.black,
       ),
       bodyMedium: TextStyle(
         fontFamily: 'Axiforma',
         fontSize: 14,
-        color: Colors.grey,
+        // color: Colors.grey,
       ),
     ),
   );
@@ -87,12 +87,12 @@ class AppTheme {
       bodyLarge: TextStyle(
         fontFamily: 'Axiforma',
         fontSize: 16,
-        color: Colors.white,
+        // color: Colors.white,
       ),
       bodyMedium: TextStyle(
         fontFamily: 'Axiforma',
         fontSize: 14,
-        color: Colors.grey,
+        // color: Colors.grey,
       ),
     ),
   );

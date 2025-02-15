@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:globe_guide/providers/country_provider.dart';
+import 'package:globe_guide/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class CountryDetailsScreen extends StatefulWidget {
@@ -28,6 +29,7 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
     final data = await context
         .read<CountryProvider>()
         .fetchCountryDataByName(widget.title);
+    print("${data}");
     setState(() {
       countryInfo = data;
     });
@@ -39,22 +41,29 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 120,
+          ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: 200),
+            // width: 120,
             child: Text(
               label,
-              style: const TextStyle(
-                color: Colors.black54,
-                fontSize: 14,
+              style: TextStyle(
+                color: !context.read<ThemeProvider>().isDarkMode
+                    ? Colors.black
+                    : const Color.fromRGBO(242, 244, 247, 1),
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
               ),
             ),
+          ),
+          const SizedBox(
+            width: 7,
           ),
           Expanded(
             child: Text(
               value,
               style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ),
@@ -115,8 +124,7 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
                             'Region:', countryInfo['continent'] ?? 'N/A'),
                         _buildInfoRow(
                             'Capital:', countryInfo['capital'] ?? 'N/A'),
-                        _buildInfoRow(
-                            'Motto:', countryInfo['description'] ?? 'N/A'),
+                        _buildInfoRow('Motto:', countryInfo['motto'] ?? 'N/A'),
                         _buildInfoRow('Official language:',
                             countryInfo['languages']?.join(', ') ?? 'N/A'),
                         _buildInfoRow('Ethnic group:',
@@ -127,7 +135,7 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
                             countryInfo['government_type'] ?? 'N/A'),
                         _buildInfoRow('Independence:',
                             countryInfo['independence_date'] ?? 'N/A'),
-                        _buildInfoRow('Area:', '${countryInfo['area']} km²'),
+                        _buildInfoRow('Area:', '${countryInfo['size']}'),
                         _buildInfoRow(
                             'Currency:', countryInfo['currency'] ?? 'N/A'),
                         _buildInfoRow('GDP:', countryInfo['gdp'] ?? 'N/A'),
