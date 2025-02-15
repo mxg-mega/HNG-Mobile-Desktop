@@ -119,8 +119,8 @@ flutter build ios
 ```
 
 # Deployment
-The app is deployed on [Appetize.io](https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue) for easy testing. You can access it here:
-GlobeGuide on [Appetize.io](https://appetize.io/app/b_f7idegq43u3prnp2ztlfffroue)
+The app is deployed on [Appetize.io](https://appetize.io/app/b_kouusp7dj2ngyfchxpvkqdtmvu) for easy testing. You can access it here:
+GlobeGuide on [Appetize.io](https://appetize.io/app/b_kouusp7dj2ngyfchxpvkqdtmvu)
 
 Contributing
 We welcome contributions! Here’s how you can help:
