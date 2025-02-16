@@ -9,12 +9,12 @@ class CountryTile extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CountryTile({
-    Key? key,
+    super.key,
     required this.countryName,
     required this.capitalName,
     this.image,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

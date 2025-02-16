@@ -74,4 +74,36 @@ class CountryProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  Future<List<dynamic>> fetchStateInfo(String? countryInfo) async {
+    _isloading = true;
+    notifyListeners();
+    try {
+      if (countryInfo == null) {
+        throw Exception("States URL cannot be empty !!!");
+      }
+      print("State URL ---------- ${countryInfo}");
+      final response = await http.get(Uri.parse(countryInfo), headers: {
+        "Accept": "application/json",
+        "Authorization": 'Bearer $_token',
+      });
+      if (response.statusCode == 200) {
+        final jsonData = jsonDecode(response.body);
+        print("State Data ---------- ${jsonData}");
+        final data = jsonData['data'] as List<dynamic>;
+        print("${data}");
+        return data;
+      } else {
+        throw Exception('Failed to fetch data');
+      }
+    } catch (e) {
+      print(
+          "---------------------------------------\n$e------------------------------\n");
+      errorMessage = e.toString();
+      return [];
+    } finally {
+      _isloading = false;
+      notifyListeners();
+    }
+  }
 }

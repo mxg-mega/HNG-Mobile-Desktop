@@ -3,8 +3,6 @@ import 'package:globe_guide/providers/country_provider.dart';
 import 'package:globe_guide/providers/theme_provider.dart';
 import 'package:globe_guide/screens/home_screen.dart';
 import 'package:globe_guide/themes/app_theme.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,7 +10,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<ThemeProvider>(
-          create: (_) => ThemeProvider(),
+          create: (_) => ThemeProvider(), 
         ),
         ChangeNotifierProvider(create: (_) => CountryProvider(),),
       ],

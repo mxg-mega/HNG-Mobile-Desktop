@@ -18,24 +18,72 @@ class CountryDetailsScreen extends StatefulWidget {
 
 class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
   Map<String, dynamic> countryInfo = {};
+  List<dynamic> statesInfo = [];
+  List<String> countryFlags = [];
 
   @override
   void initState() {
     super.initState();
-    _loadCountryData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadCountryData();
+    });
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   getStateData();
+    // });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   Future<void> _loadCountryData() async {
-    final data = await context
-        .read<CountryProvider>()
-        .fetchCountryDataByName(widget.title);
-    print("${data}");
-    setState(() {
-      countryInfo = data;
-    });
+    try {
+      final data = await context
+          .read<CountryProvider>()
+          .fetchCountryDataByName(widget.title);
+      print("${data}");
+      setState(() {
+        countryInfo = data;
+        countryFlags.add(data['href']['flag']);
+      });
+      if (data['href']['states'] != null) {
+        getStateData(data['href']['states']);
+      }
+      // final statesData = await context
+      //     .read<CountryProvider>()
+      //     .fetchStateInfo(data['href']['states']);
+      // print("${statesData}");
+      // setState(() {
+      //   statesInfo = statesData.first;
+      //   countryFlags.add(statesData.first['href']);
+      // });
+    } catch (e) {
+      print("Failed to load country data: $e");
+    }
   }
 
-  Widget _buildInfoRow(String label, String value) {
+  Future<void> getStateData(String url) async {
+    print("the states url ${countryInfo['href']['states']}");
+    try {
+      final statesData =
+          await context.read<CountryProvider>().fetchStateInfo(url);
+      print("${statesData}");
+      setState(() {
+        statesInfo = statesData.map((e) => e['name']).toList();
+        // countryFlags.add(statesData.first['href']);
+      });
+    } catch (e) {
+      print("Failed to load state data: $e");
+    }
+  }
+
+  Widget _buildInfoRow(String label, dynamic value,
+      {TextStyle? labelStyle, TextStyle? valueStyle}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -43,28 +91,27 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
         children: [
           ConstrainedBox(
             constraints: BoxConstraints(maxWidth: 200),
-            // width: 120,
             child: Text(
               label,
-              style: TextStyle(
-                color: !context.read<ThemeProvider>().isDarkMode
-                    ? Colors.black
-                    : const Color.fromRGBO(242, 244, 247, 1),
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              style: labelStyle ??
+                  TextStyle(
+                    color: !context.read<ThemeProvider>().isDarkMode
+                        ? Colors.black
+                        : const Color.fromRGBO(242, 244, 247, 1),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ),
-          const SizedBox(
-            width: 7,
-          ),
+          const SizedBox(width: 7),
           Expanded(
             child: Text(
-              value,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
+              value is List ? value.join(', ') : value.toString(),
+              style: valueStyle ??
+                  const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w300,
+                  ),
             ),
           ),
         ],
@@ -72,9 +119,51 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
     );
   }
 
+  // Widget _buildInfoRow(String label, String value,
+  //     {TextStyle? labelStyle, TextStyle? valueStyle}) {
+  //   return Padding(
+  //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+  //     child: Row(
+  //       crossAxisAlignment: CrossAxisAlignment.start,
+  //       children: [
+  //         ConstrainedBox(
+  //           constraints: BoxConstraints(maxWidth: 200),
+  //           child: Text(
+  //             label,
+  //             style: labelStyle ??
+  //                 TextStyle(
+  //                   color: !context.read<ThemeProvider>().isDarkMode
+  //                       ? Colors.black
+  //                       : const Color.fromRGBO(242, 244, 247, 1),
+  //                   fontSize: 16,
+  //                   fontWeight: FontWeight.w500,
+  //                 ),
+  //           ),
+  //         ),
+  //         const SizedBox(width: 7),
+  //         Expanded(
+  //           child: Text(
+  //             value,
+  //             style: valueStyle ??
+  //                 const TextStyle(
+  //                   fontSize: 16,
+  //                   fontWeight: FontWeight.w300,
+  //                 ),
+  //           ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
-    final countryProv = Provider.of<CountryProvider>(context);
+    final countryProv = Provider.of<CountryProvider>(context, listen: false);
+    // countryFlags = [
+    //   if (countryInfo['href']?['flags'] != null) countryInfo['href']['flags'],
+    //   if (statesInfo['href']?['flags'] != null) statesInfo['href']['flags']
+    // ].whereType<String>().toList();
+    print("${countryFlags}");
 
     return Scaffold(
       appBar: AppBar(
@@ -105,14 +194,33 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        countryInfo['href']?['flag'] ?? '',
-                        fit: BoxFit.cover,
-                      ),
+                      child: countryProv.isloading
+                          ? const CircularProgressIndicator()
+                          // : countryFlags.isEmpty
+                          //     ? const Center(child: Text('No flags available'))
+                          : PageView.builder(
+                              itemCount: countryFlags.length,
+                              itemBuilder: (context, index) {
+                                if (countryFlags[index].isEmpty) {
+                                  return const Center(
+                                      child: Text('No flags available'));
+                                }
+                                print("Flag: ${countryFlags[index]}");
+                                return Image.network(
+                                  countryFlags[index],
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Container(
+                                    width: 40,
+                                    height: 40,
+                                    color:
+                                        const Color.fromARGB(255, 116, 14, 14),
+                                  ),
+                                );
+                              },
+                            ),
                     ),
                   ),
-
-                  // Country Information
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -125,6 +233,7 @@ class _CountryDetailsScreenState extends State<CountryDetailsScreen> {
                         _buildInfoRow(
                             'Capital:', countryInfo['capital'] ?? 'N/A'),
                         _buildInfoRow('Motto:', countryInfo['motto'] ?? 'N/A'),
+                        _buildInfoRow('States:', statesInfo),
                         _buildInfoRow('Official language:',
                             countryInfo['languages']?.join(', ') ?? 'N/A'),
                         _buildInfoRow('Ethnic group:',
