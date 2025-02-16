@@ -31,17 +31,15 @@ Before running the app, ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/globe_guide.git
+   git clone https://github.com/mxg-mega/HNG-Mobile-Desktop/globe_guide.git
    ```
 2. Navigate to the project directory:
     ```bash
-    Copy
     cd globe_guide
     ```
 
 3. Install dependencies:
     ```bash
-    Copy
     flutter pub get
     ```
 
@@ -62,7 +60,6 @@ API_KEY=your_api_key_here
 2. Run the app:
 
     ```bash
-    Copy
     flutter run
     ```
 
@@ -99,7 +96,6 @@ Themes can be toggled via the sun/moon icon in the app bar.
 To run the tests, use the following command:
 
 ```bash
-Copy
 flutter test
 ```
 
@@ -107,19 +103,18 @@ flutter test
 1. Build an APK:
 
 ```bash
-Copy
 flutter build apk
 ```
 
 2. Build for iOS:
 
 ```bash
-Copy
 flutter build ios
 ```
 
 # Deployment
 The app is deployed on [Appetize.io](https://appetize.io) for easy testing. You can access it here:
+
 GlobeGuide on [Appetize.io](https://appetize.io/app/b_ep3exu5itpnatwftasufqxjhey)
 
 Contributing
@@ -130,21 +125,18 @@ We welcome contributions! Here’s how you can help:
 2. Create your feature branch:
 
 ```bash
-Copy
 git checkout -b feature/AmazingFeature
 ```
 
 3. Commit your changes:
 
 ```bash
-Copy
 git commit -m 'Add some AmazingFeature'
 ```
 
 4. Push to the branch:
 
 ```bash
-Copy
 git push origin feature/AmazingFeature
 ```
 
