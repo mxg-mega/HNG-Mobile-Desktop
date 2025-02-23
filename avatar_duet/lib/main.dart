@@ -1,5 +1,5 @@
 import 'package:avatar_duet/providers/glb_provider.dart';
-import 'package:avatar_duet/screens/veiwer_screen.dart';
+import 'package:avatar_duet/screens/viewer_screen.dart';
 import 'package:avatar_duet/screens/view_model_from_web_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +9,9 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (_) =>
-                GlbProvider()..loadGlbFiles()), // Auto-load on startup
+            create: (_) => GlbProvider()
+              ..loadGlbFiles()
+              ..loadAnimFiles()),
       ],
       child: const MyApp(),
     ),
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Avatar Duet',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Avatar Duet'),
@@ -75,11 +76,10 @@ class MyHomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        const ViewModelFromWebScreen(),
-                  ),
-                );
+            MaterialPageRoute(
+              builder: (BuildContext context) => const ViewModelFromWebScreen(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
         tooltip: "Add a Model",

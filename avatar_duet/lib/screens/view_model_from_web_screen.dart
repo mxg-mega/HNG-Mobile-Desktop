@@ -1,4 +1,4 @@
-import 'package:avatar_duet/screens/veiwer_screen.dart';
+import 'package:avatar_duet/screens/viewer_screen.dart';
 import 'package:flutter/material.dart';
 
 class ViewModelFromWebScreen extends StatelessWidget {
@@ -42,7 +42,6 @@ class ViewModelFromWebScreen extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (BuildContext context) => ViewerPage(
                           src: urlController.text,
-                          isInternetSrc: true,
                         ),
                       ),
                     );
