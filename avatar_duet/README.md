@@ -4,7 +4,7 @@ A Flutter application that enables loading and animating 3D assets (.glb files) 
 
 ## 🌟 Live Demo
 - [Try it on Appetize.io](https://appetize.io/app/b_nleyu4fhlnsdytu2hv4isu7zo4)
-- [Video Demo](placeholder_for_google_drive_link)
+- [Video Demo](https://drive.google.com/file/d/1-IUQhEJ_AC1RCg0wQmPAwupdlb-0oQL6/view?usp=drivesdk)
 
 ## ✨ Features
 
